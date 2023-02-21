@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const mealRoutes = require('./routes/meals')
 
 app.use(express.json())
 
@@ -8,6 +9,8 @@ app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 });
+
+app.use('/api/meals', mealRoutes)
 
 app.get('/', function (req, res) {
   res.json({mssg: "Welcome to the Let's Eat app!"})
